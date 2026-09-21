@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دعوة زفاف</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Qahiri&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+ <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+     background-image: url("BCK.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;      /* يجعل الصورة تغطي الشاشة بالكامل */
+    background-position: center; /* يضع الصورة في المنتصف */
+    background-attachment: fixed; /* اختياري: يجعل الخلفية ثابتة أثناء التمرير */
+
+}
+
+.scene {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+   box-shadow:  3px 2px 3px 10px rgba(14, 13, 12, 0.521);
+}
+
+.petals-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.petal {
+  position: absolute;
+  border-radius: 50% 50% 50% 0;
+  opacity: 0;
+  animation: drift linear infinite;
+   box-shadow:  0px 2px 3px 4px rgba(14, 13, 12, 0.521);
+}
+@keyframes drift {
+  0%   { transform: translateY(-30px) rotate(0deg) scale(1);   opacity: 0; }
+  10%  { opacity: 0.5; }
+  90%  { opacity: 0.3; }
+  100% { transform: translateY(110vh) rotate(540deg) scale(0.7); opacity: 0; }
+}
+
+.stage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 150px;
+}
+
+.env-wrap {
+  position: relative;
+  width: 340px;
+  height: 230px;
+  cursor: pointer;
+  perspective: 1000px;
+background-image: url(6.jpg);
+  box-shadow:  0px 2px 2px 4px rgba(14, 13, 12, 0.521);
+}
+
+.env-body {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 340px; height: 200px;
+ 
+  border-radius: 4px 4px 14px 14px;
+  
+ 
+  overflow: hidden;
+}
+
+.env-inner-left {
+  position: absolute; bottom: 0; left: 0;
+  width: 0; height: 0;
+
+  border-right: 170px solid transparent;
+   background-color: rgb(1, 85, 1);
+}
+.env-inner-right {
+  position: absolute; bottom: 0; right: 0;
+  width: 0; height: 0;
+  
+  border-left: 170px solid transparent;
+    background-color: rgb(1, 112, 1);
+}
+
+.env-flap{
+    position:absolute;
+    top:0;
+    left:0;
+    width:340px;
+    height:140px;
+
+  background-image:
+  linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.329)),
+  url("a.jpeg");
+        box-shadow:  2px 3px 4px rgba(14, 13, 12, 0.521);
+    clip-path:polygon(0 0,100% 0,50% 100%);
+     box-shadow: 5px 12px 25px rgba(31, 29, 28, 0.3);
+    transform-origin:top center;
+    transform:rotateX(0deg);
+    transition:5s;
+}
+
+.env-seal {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 110px;
+  height: 110px;
+   
+  background-image: url("khtm.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border: none;
+  border-radius: 50%;
+
+  z-index: 20;
+
+  
+
+  transition: opacity 0.3s 0.4s, transform 0.3s 0.4s;
+}
+
+
+
+.hint {
+  
+  
+  color: #131205; text-align: center;
+  letter-spacing: 1px;
+  transition: opacity 0.4s;
+  font-size: 30px;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.open-btn {
+  font-family: 'Playfair Display', serif;
+  font-size: 12px; letter-spacing: 4px;
+  color: #7a4f30; background: transparent;
+  
+  
+  cursor: pointer;
+
+}
+.flr img{
+    width: 150px;
+    height: 160px;
+    margin-right: 250px;
+    margin-top: 120px;
+
+
+}
+.corner-img img{
+ 
+    position: absolute;
+
+    top: -20px;
+    left: 100%;
+
+    transform: translateX(-50%);
+
+    width: 100px;
+    height: auto;
+
+    z-index: 0;
+}
+
+ 
+ 
+
+
+.hearts-burst {
+  position: absolute;
+  top: 50%; left: 50%;
+  pointer-events: none;
+  z-index: 30;
+}
+.h-particle {
+  position: absolute;
+  font-size: 18px;
+  opacity: 0;
+  animation: none;
+}
+@media (max-width: 768px) {
+
+  body{
+    overflow-x: hidden;
+  }
+
+  .stage{
+    margin-top: 80px;
+    gap: 20px;
+  }
+
+  .env-wrap{
+    width: 260px;
+    height: 180px;
+  }
+
+  .env-body{
+    width: 260px;
+    height: 150px;
+  }
+
+  .env-flap{
+    width: 260px;
+    height: 110px;
+  }
+
+  .env-seal{
+    width: 60px;
+    height: 60px;
+    top: 72px;
+  }
+
+  .hint{
+    font-size: 24px;
+    padding: 0 20px;
+    text-align: center;
+  }
+
+  /* الوردة الكبيرة */
+  .flr img{
+    width: 80px;
+    height: auto;
+    margin-right: 200px;
+    margin-top: 130px;
+  }
+
+  /* الزخرفة العلوية */
+  .corner-img img{
+    width: 60px;
+    top: -15px;
+    left: 100%;
+  }
+
+  /* إذا استعملت hm */
+  .hm img{
+    width: 120px;
+    margin-right: 120px;
+    margin-bottom: 220px;
+  }
+
+}
+
+.hm img{
+    width: 200px;
+    margin-right: 200px;
+    margin-bottom: 300px;
+}
+@keyframes burst {
+  0%   { transform: translate(0,0) scale(0.5) rotate(0deg); opacity: 1; }
+  80%  { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+/* ========================= */
+/* Responsive For Mobile */
+/* ========================= */
+
+.open .env-flap         { transform: rotateX(190deg); }
+.open .env-seal         { opacity: 0; transform: translateX(-50%) scale(0.3); }
+.open .rose-l           { transform: translate(-12px, -6px) rotate(-15deg); }
+.open .rose-r           { transform: scaleX(-1) translate(-12px, -6px) rotate(-15deg); }
+</style>
+</head>
+<body>
+
+     
+<div class="scene">
+   
+ 
+  <div class="petals-bg" id="petals"></div>
+  <div class="hearts-burst" id="burst"></div>
+          
+  <div class="stage">
+    
+           
+    <div class="env-wrap" id="env" onclick="openEnv()">
+             
+        
+        <div class="corner-img"> <img src="FL1.png" > </div>
+              <div class="flr">
+                     <img src="FL2.png"> 
+     
+                   </div>
+              
+                  
+      <div class="env-body">
+     
+        <div class="env-inner-left"></div>
+        <div class="env-inner-right"></div>
+   
+      </div>
+
+      <div class="env-flap">
+        
+      
+      </div>
+
+      <div class="env-seal"></div>
+
+  
+    </div>
+
+    <h1 class="hint" id="hint" data-aos="fade-down"
+     data-aos-easing="linear"
+     data-aos-duration="1500"> دعوة خاصة لك</h1>
+   <button class="open-btn" id="btn" onclick="openEnv()"> </button>
+  
+  
+  
+  </div>
+
+</div>
+
+<script>
+  // ==========================================
+  var MY_LINK = "inv.html"; // ضع رابطك هنا
+  // ==========================================
+
+  var opened = false;
+
+  function openEnv() {
+    if (opened) return;
+    opened = true;
+
+    var env = document.getElementById('env');
+    env.classList.add('open');
+    document.getElementById('hint').style.opacity = '0';
+    document.getElementById('btn').style.opacity  = '0';
+
+    
+    
+
+    setTimeout(function() {
+      window.location.href = MY_LINK;
+    }, 1000);
+  }
+
+  function fireBurst() {
+    var burst  = document.getElementById('burst');
+    var shapes = ['❤','✦','✿','◆','❀','♡','✾','❋'];
+    var colors = ['#e898a8','#f0c860','#c8956c','#a0c870','#d880b0','#f8d080'];
+    for (var i = 0; i < 22; i++) {
+      var el    = document.createElement('div');
+      el.className = 'h-particle';
+      var angle = (i / 22) * 360;
+      var dist  = 80 + Math.random() * 120;
+      var rad   = angle * Math.PI / 180;
+      var tx    = Math.cos(rad) * dist;
+      var ty    = Math.sin(rad) * dist;
+      el.textContent   = shapes[Math.floor(Math.random() * shapes.length)];
+      el.style.color   = colors[Math.floor(Math.random() * colors.length)];
+      el.style.fontSize = (12 + Math.random() * 14) + 'px';
+      el.style.animation = 'burst ' + (0.7 + Math.random() * 0.5) + 's ease-out forwards';
+      el.style.animationDelay = (Math.random() * 0.2) + 's';
+      el.style.setProperty('--tx', tx + 'px');
+      el.style.setProperty('--ty', ty + 'px');
+      el.style.transform = 'translate(-50%, -50%)';
+      burst.appendChild(el);
+
+      (function(elem, x, y) {
+        setTimeout(function() {
+          elem.style.transition = 'none';
+          var start = performance.now();
+          var dur   = 700 + Math.random() * 500;
+          function step(now) {
+            var t = Math.min((now - start) / dur, 1);
+            var ease = 1 - Math.pow(1 - t, 3);
+            elem.style.transform = 'translate(calc(-50% + ' + (x*ease) + 'px), calc(-50% + ' + (y*ease) + 'px)) scale(' + (1 - t*0.4) + ')';
+            elem.style.opacity   = '' + (1 - t);
+            if (t < 1) requestAnimationFrame(step);
+            else elem.remove();
+          }
+          requestAnimationFrame(step);
+        }, Math.random() * 200);
+      })(el, tx, ty);
+    }
+  }
+
+  function raisePetals() {
+    var container  = document.getElementById('petals');
+    var colors     = ['#e8bfbc','#f5d5d3','#f0c8c0','#f5d890','#fce0d0','#d8c0e8'];
+    for (var i = 0; i < 40; i++) {
+      var p = document.createElement('div');
+      p.className = 'petal';
+      p.style.left              = (10 + Math.random() * 80) + '%';
+      p.style.top               = '-20px';
+      p.style.background        = colors[Math.floor(Math.random() * colors.length)];
+      p.style.animationDuration = (3 + Math.random() * 5) + 's';
+      p.style.animationDelay    = (Math.random() * 1.2) + 's';
+      p.style.width             = (7  + Math.random() * 9)  + 'px';
+      p.style.height            = (11 + Math.random() * 11) + 'px';
+      p.style.opacity           = '0';
+      p.style.transform         = 'rotate(' + (Math.random()*360) + 'deg)';
+      container.appendChild(p);
+    }
+  }
+
+  (function initPetals() {
+    var container = document.getElementById('petals');
+    var colors    = ['#e8bfbc','#f5d5d3','#f0c8c0','#e8d0b8','#f5e0d0'];
+    for (var i = 0; i < 14; i++) {
+      var p = document.createElement('div');
+      p.className = 'petal';
+      p.style.left              = Math.random() * 100 + '%';
+      p.style.top               = '-20px';
+      p.style.background        = colors[Math.floor(Math.random() * colors.length)];
+      p.style.animationDuration = (8 + Math.random() * 10) + 's';
+      p.style.animationDelay    = (Math.random() * 12) + 's';
+      p.style.width             = (6  + Math.random() * 6) + 'px';
+      p.style.height            = (10 + Math.random() * 8) + 'px';
+      p.style.transform         = 'rotate(' + (Math.random()*360) + 'deg)';
+      container.appendChild(p);
+    }
+  })();
+</script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+</html>
